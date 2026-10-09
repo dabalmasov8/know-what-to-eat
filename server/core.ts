@@ -92,7 +92,8 @@ export async function handle(req: Request, env: Env, deps: Deps): Promise<Respon
   if ((await store.get(`lock:${ip}`)) === '1') return fail('locked', 429);
   const given = req.headers.get('x-passcode') ?? '';
   if (!safeEqual(given, expected)) {
-    if ((await store.incr(`af:${ip}`, 900)) >= 10) await store.put(`lock:${ip}`, '1', 900);
+    // An empty header is just a client that has not asked the user for the passcode yet: don't count it as guessing.
+    if (given !== '' && (await store.incr(`af:${ip}`, 900)) >= 10) await store.put(`lock:${ip}`, '1', 900);
     return fail('unauthorized', 401);
   }
 

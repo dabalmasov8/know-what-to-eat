@@ -34,6 +34,11 @@ describe('proxy auth', () => {
     expect((await setup({}, { GOOGLE_API_KEY: 'k' }).call('/api/places', places)).status).toBe(503);
     expect((await setup({}, { APP_PASSCODE: 'p' }).call('/api/places', places, { 'x-passcode': 'p' })).status).toBe(503);
   });
+  it('does not count a missing passcode towards the lockout', async () => {
+    const { call } = setup({}, { ...env, RATE_LIMIT_PER_MIN: '1000' });
+    for (let i = 0; i < 15; i++) expect((await call('/api/places', places, {})).status).toBe(401);
+    expect((await call('/api/geocode', { postcode: '00-001', country: 'PL' })).status).toBe(200);
+  });
   it('locks an IP after 10 wrong attempts', async () => {
     const { call } = setup({}, { ...env, RATE_LIMIT_PER_MIN: '1000' });
     for (let i = 0; i < 10; i++) await call('/api/places', places, { 'x-passcode': 'bad' + i });

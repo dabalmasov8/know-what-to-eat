@@ -29,4 +29,5 @@ await page.waitForSelector('#postcode');
 check('settings prefilled', (await page.inputValue('#postcode')) === '00-001' && (await page.inputValue('#radius')) === '4');
 await page.screenshot({ path: 'e2e-shots/stage1.png' });
 check('no console errors', errors.filter((e) => !/401/.test(e)).length === 0);
+if (errors.length) console.log(errors);
 await browser.close();
