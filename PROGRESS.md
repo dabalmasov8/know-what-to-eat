@@ -14,3 +14,6 @@ Pass-the-phone voting (A, hidden hand-over, B), intersection / multiple matches 
 
 ## Stages 4 + 5: Places lookup and place card
 Places list from the local cache (verified: zero API calls), open-now toggle, sort by distance / our rating, stale-cache banner. Card: distance, Google rating + count, our rating (or "not rated"), open/closed from cached weekly hours, website, call, Maps, 4 delivery buttons (search fallbacks, see DECISIONS), primary "We're going here / ordering from here" creating an unrated visit. Verified: `tests/e2e/stage45.mjs`, `tests/ratings.test.ts`, `tests/hours.test.ts`.
+
+## Stages 6 + 7: Rating loop, history, leaderboard
+Pending-rating banner on Home after the configurable delay (default 2 h), pass-the-phone 1-5 star rating with hidden scores, average saved, skip ("we didn't go"), history (with rate-now for pending), leaderboard (average, visit count, tap to reopen place), our rating on place cards and lists. Verified: `tests/e2e/stage67.mjs` (delay respected via back-dated visits, hidden scores, skip, leaderboard, reopen) and `tests/ratings.test.ts`.
