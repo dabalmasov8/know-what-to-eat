@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+import { readdirSync, readFileSync } from 'node:fs';
+const dir = 'e2e-shots/preview';
+const names = readdirSync(dir).filter((f) => /^\d\d-.*\.png$/.test(f)).sort();
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium', args: ['--no-sandbox'] });
+const page = await browser.newPage({ viewport: { width: 1800, height: 900 } });
+const figs = names.map((n) => `<figure><img src="data:image/png;base64,${readFileSync(`${dir}/${n}`).toString('base64')}"><figcaption>${n.replace('.png', '')}</figcaption></figure>`).join('');
+await page.setContent(`<body style="margin:0;background:#ddd;font:14px sans-serif"><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:12px">${figs}</div><style>figure{margin:0;background:#fff;padding:6px;border-radius:8px}img{width:100%;height:520px;object-fit:cover;object-position:top;display:block}figcaption{padding:4px;text-align:center}</style></body>`);
+await page.waitForTimeout(800);
+await page.screenshot({ path: `${dir}/contact-sheet.png`, fullPage: true });
+await browser.close();
+console.log(names.length);
