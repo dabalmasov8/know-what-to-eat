@@ -8,3 +8,6 @@ Names, country (PL default, configurable), postcode validation + auto-format, ra
 
 ## Stage 1.5: Area discovery
 Proxy (auth, rate limit, daily cap, cache), Google client (Geocoding + Text Search paging up to 3), cuisine derivation, filters, Discover screen (per-cuisine counts, unknown count, sparse-area hint, targeted search). Verified: `tests/proxy.test.ts`, `cuisine.test.ts`, `discovery.test.ts`, `hours.test.ts`, and `tests/e2e/stage15.mjs` against the mock proxy in Chromium. With fixtures (r=5 km): 46 found, 40 qualified, 36 known cuisine / 4 unknown, 4-5 API calls. Real-key numbers: NOT verified (no key).
+
+## Stages 2 + 3: Voting and wheel
+Pass-the-phone voting (A, hidden hand-over, B), intersection / multiple matches (pick or random) / empty -> wheel. SVG wheel with crypto-random winner decided first, CSS spin (5 s), "Pick for us" instant button, reduced-motion support, union-of-yes or all-cuisines segments. Verified: `tests/voting.test.ts`, `tests/wheel.test.ts` (geometry lands on the chosen segment) and `tests/e2e/stage23.mjs` (single match, several matches, wheel union, no/no wheel, spin timing, reduced motion).

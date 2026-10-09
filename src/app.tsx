@@ -5,6 +5,8 @@ import { t } from './i18n';
 import { Home } from './screens/Home';
 import { Setup } from './screens/Setup';
 import { Discover } from './screens/Discover';
+import { Vote } from './screens/Vote';
+import { Wheel } from './screens/Wheel';
 
 export function App() {
   useEffect(() => {
@@ -16,7 +18,7 @@ export function App() {
   const needsSetup = !settings.value && r !== '/';
   return (
     <Shell>
-      {r === '/setup' || r === '/settings' || needsSetup ? <Setup /> : r === '/discover' ? <Discover /> : <Home />}
+      {r === '/setup' || r === '/settings' || needsSetup ? <Setup /> : r === '/discover' ? <Discover /> : r === '/vote' ? <Vote /> : r === '/wheel' ? <Wheel /> : <Home />}
     </Shell>
   );
 }
