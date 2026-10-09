@@ -19,3 +19,9 @@
 - **Opening hours** are stored as weekly periods + UTC offset and "open now" is computed on the client, because a cached `openNow` snapshot would be stale.
 - **Cache lifetime 7 days** (`PLACE_CACHE_DAYS`). Google's terms (per search summaries; not verifiable here) allow indefinite storage only of place IDs and ~30 days for coordinates; other content should only be cached temporarily. Visits therefore store only a name snapshot for history; the places cache is rebuilt after 7 days and is **not** included in JSON export.
 - A "specific cuisine" search makes one extra 1-page call (`"<cuisine> restaurant"`), merges new qualifying places, and fills `unknown` cuisines of matching existing places.
+
+## Stages 4-5
+- **Delivery buttons are web-search fallbacks** for Wolt, Pyszne.pl, Glovo and Uber Eats (`Google search: "<name> <service> <postcode>"`). Searches could not confirm a public by-name search URL for any of them (Pyszne.pl and Glovo: none found; Wolt: only an undocumented, city-slug-specific `/search?q=`; Uber Eats: unconfirmed), and the brief says to fall back when unsure. One function (`src/lib/delivery.ts`) to change once formats are verified in a real browser.
+- Maps button uses the documented Maps URLs format `search/?api=1&query=<name>&query_place_id=<id>`.
+- Places list reads only IndexedDB (`places` by `cuisine`); the stale banner (7 days) sends the user to Discover to refresh. Visits snapshot the place name and cuisine.
+- "Open now" filter hides only places known to be closed; unknown hours are kept.

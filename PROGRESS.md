@@ -11,3 +11,6 @@ Proxy (auth, rate limit, daily cap, cache), Google client (Geocoding + Text Sear
 
 ## Stages 2 + 3: Voting and wheel
 Pass-the-phone voting (A, hidden hand-over, B), intersection / multiple matches (pick or random) / empty -> wheel. SVG wheel with crypto-random winner decided first, CSS spin (5 s), "Pick for us" instant button, reduced-motion support, union-of-yes or all-cuisines segments. Verified: `tests/voting.test.ts`, `tests/wheel.test.ts` (geometry lands on the chosen segment) and `tests/e2e/stage23.mjs` (single match, several matches, wheel union, no/no wheel, spin timing, reduced motion).
+
+## Stages 4 + 5: Places lookup and place card
+Places list from the local cache (verified: zero API calls), open-now toggle, sort by distance / our rating, stale-cache banner. Card: distance, Google rating + count, our rating (or "not rated"), open/closed from cached weekly hours, website, call, Maps, 4 delivery buttons (search fallbacks, see DECISIONS), primary "We're going here / ordering from here" creating an unrated visit. Verified: `tests/e2e/stage45.mjs`, `tests/ratings.test.ts`, `tests/hours.test.ts`.

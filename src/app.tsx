@@ -7,6 +7,7 @@ import { Setup } from './screens/Setup';
 import { Discover } from './screens/Discover';
 import { Vote } from './screens/Vote';
 import { Wheel } from './screens/Wheel';
+import { Places } from './screens/Places';
 
 export function App() {
   useEffect(() => {
@@ -18,7 +19,7 @@ export function App() {
   const needsSetup = !settings.value && r !== '/';
   return (
     <Shell>
-      {r === '/setup' || r === '/settings' || needsSetup ? <Setup /> : r === '/discover' ? <Discover /> : r === '/vote' ? <Vote /> : r === '/wheel' ? <Wheel /> : <Home />}
+      {r === '/setup' || r === '/settings' || needsSetup ? <Setup /> : r === '/discover' ? <Discover /> : r === '/vote' ? <Vote /> : r === '/wheel' ? <Wheel /> : r.startsWith('/places/') ? <Places cuisine={r.slice(8)} key={r} /> : <Home />}
     </Shell>
   );
 }
