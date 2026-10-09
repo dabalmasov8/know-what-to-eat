@@ -57,7 +57,7 @@ input[type='range'] { width: 100%; min-height: var(--tap); accent-color: var(--b
 .err { color: var(--bad); font-size: 0.9rem; margin: 4px 0 0; }
 
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: var(--brand-soft); font-weight: 600; font-size: 0.9rem; }
-.chip.ok { background: #e3f4e4; color: var(--ok); }
+.chip.ok { background: #e3f4e4; color: #1b5e20; }
 .chip.bad { background: #fde7e5; color: var(--bad); }
 
 .skeleton { background: linear-gradient(90deg, #f3e6d6 25%, #fbf1e6 50%, #f3e6d6 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 10px; height: 20px; }

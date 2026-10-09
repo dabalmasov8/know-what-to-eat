@@ -25,3 +25,9 @@
 - Maps button uses the documented Maps URLs format `search/?api=1&query=<name>&query_place_id=<id>`.
 - Places list reads only IndexedDB (`places` by `cuisine`); the stale banner (7 days) sends the user to Discover to refresh. Visits snapshot the place name and cuisine.
 - "Open now" filter hides only places known to be closed; unknown hours are kept.
+
+## Stage 8
+- `axe-core` (dev): automated WCAG checks in the e2e run.
+- **No analytics**: the brief's "analytics-light" was skipped on purpose (no backend for counters, and it keeps the privacy note simple). Feedback link points to the GitHub issues page.
+- Export excludes `places`/`area` (Google content) and clears them on import, so import is followed by a fresh discovery.
+- Passcode lives in `localStorage` (not IndexedDB, so it is never exported).

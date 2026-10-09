@@ -197,5 +197,21 @@
   "nav.history": "History",
   "nav.board": "Leaderboard",
   "place.reorder": "Open this place",
-  "place.detail.title": "{name}"
+  "place.detail.title": "{name}",
+  "data.title": "Your data",
+  "data.export": "Export backup (JSON)",
+  "data.import": "Import backup",
+  "data.import.confirm": "Importing replaces everything saved on this device. Continue?",
+  "data.import.ok": "Backup restored. Places will be searched again.",
+  "data.import.error": "That file isn’t a valid Food Picker backup.",
+  "data.persist.yes": "Storage is protected from automatic clean-up.",
+  "data.persist.no": "The browser may clear this data when space is low. Export a backup from time to time, or install the app.",
+  "privacy.title": "Privacy",
+  "privacy.body1": "Everything you save (names, ratings, history) stays in this browser on this device. There are no accounts.",
+  "privacy.body2": "When you search, your postcode, radius and search text go to this app’s server, which forwards them to Google (Geocoding and Places APIs) using the owner’s key. Google may process them under its own terms.",
+  "privacy.body3": "Place details from Google are kept on your device for up to 7 days and are not part of backups. No analytics, ads or trackers are used.",
+  "passcode.reset": "Change the app passcode",
+  "feedback.link": "Send feedback",
+  "error.boundary": "Something went wrong. Your saved data is safe.",
+  "error.boundary.reload": "Reload"
 }

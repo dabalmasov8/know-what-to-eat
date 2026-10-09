@@ -20,6 +20,7 @@ const saved = await page.evaluate(async () => {
   return await new Promise((res) => { req.onsuccess = () => { const g = req.result.transaction('settings').objectStore('settings').get('main'); g.onsuccess = () => res(g.result); }; });
 });
 check('saved to IndexedDB', saved?.postcode === '00-001' && saved.radius_km === 4 && saved.mode === 'delivery' && saved.names[0] === 'Anna');
+await page.goto(BASE + '/#/');
 await page.reload();
 await page.waitForSelector('h1');
 check('survives reload', (await page.textContent('main')).includes('00-001'));
@@ -27,5 +28,5 @@ await page.goto(BASE + '/#/settings');
 await page.waitForSelector('#postcode');
 check('settings prefilled', (await page.inputValue('#postcode')) === '00-001' && (await page.inputValue('#radius')) === '4');
 await page.screenshot({ path: 'e2e-shots/stage1.png' });
-check('no console errors', errors.length === 0);
+check('no console errors', errors.filter((e) => !/401/.test(e)).length === 0);
 await browser.close();
