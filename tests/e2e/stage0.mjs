@@ -1,0 +1,24 @@
+import { launch, check, BASE } from './lib.mjs';
+const { browser, context, page, errors } = await launch();
+await page.goto(BASE);
+await page.waitForSelector('h1');
+check('renders tagline EN', (await page.textContent('h1')).includes('Stop arguing'));
+await page.click('button[lang=uk]');
+check('switch to UK', (await page.textContent('h1')).includes('Годі'));
+await page.reload();
+check('language persisted', (await page.textContent('h1')).includes('Годі'));
+const manifest = await page.evaluate(() => fetch('/manifest.webmanifest').then((r) => r.json()));
+check('manifest standalone + light colors', manifest.display === 'standalone' && manifest.theme_color === '#fff8f0' && manifest.background_color === '#fff8f0');
+check('color-scheme meta', await page.evaluate(() => document.querySelector('meta[name=color-scheme]')?.content === 'light'));
+await page.evaluate(() => navigator.serviceWorker.ready);
+await page.reload(); // let SW take control
+await page.waitForTimeout(500);
+await context.setOffline(true);
+await page.reload();
+await page.waitForSelector('h1');
+check('shell works offline', (await page.textContent('h1')).length > 0);
+check('offline banner', await page.isVisible('.banner.warn'));
+await page.screenshot({ path: 'e2e-shots/stage0.png' });
+check('no console errors', errors.length === 0);
+if (errors.length) console.log(errors);
+await browser.close();

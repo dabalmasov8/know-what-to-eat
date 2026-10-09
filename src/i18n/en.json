@@ -1,0 +1,22 @@
+{
+  "app.name": "Food Picker",
+  "app.tagline": "Stop arguing about where to eat.",
+  "lang.label": "Language",
+  "nav.home": "Home",
+  "nav.settings": "Settings",
+  "home.hello": "Two people, one phone, zero arguments.",
+  "home.intro": "Tell us where you are, answer yes or no for each cuisine, and we pick great places nearby.",
+  "common.back": "Back",
+  "common.next": "Next",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.close": "Close",
+  "common.retry": "Try again",
+  "common.loading": "Loading…",
+  "offline.banner": "You are offline. Saved data still works; searching for places needs a connection.",
+  "install.title": "Install Food Picker",
+  "install.body": "Add it to your home screen to open it like an app.",
+  "install.button": "Install",
+  "install.ios": "On iPhone: tap Share, then “Add to Home Screen”.",
+  "install.dismiss": "Not now"
+}

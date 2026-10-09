@@ -1,0 +1,35 @@
+{
+  "name": "food-picker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sh -c 'MOCK_GOOGLE=1 tsx server/node.ts & vite --host; kill %1'",
+    "dev:api": "tsx server/node.ts",
+    "build": "vite build",
+    "start": "tsx server/node.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "e2e": "node tests/e2e.mjs"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.11.3",
+    "dexie": "^4.4.6",
+    "preact": "^11.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@preact/preset-vite": "^2.10.6",
+    "@types/node": "^26.6.4",
+    "eslint": "^10.12.0",
+    "fake-indexeddb": "^6.2.5",
+    "playwright-core": "^1.64.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.3"
+  }
+}
